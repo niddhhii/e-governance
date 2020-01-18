@@ -1,12 +1,18 @@
-import React from 'react';
-import Login from './component/login/login';
-import Navbar from './component/Navbar/Navbar';
+import React, { lazy, Suspense } from 'react';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+const home = lazy(() => import('./component/home/home'));
+const department = lazy(()=>import('./component/department/department'));
 function App() {
   return (
-    <div >
-    <Navbar/>
-    <Login/>
-    </div>
+    <Router>
+			<Suspense fallback={<div>Loading...</div>}>
+				<Switch>
+					<Route path="/" exact component={home} />
+          <Route path="/department" exact component ={department} />
+          <Route path="/login" exact component ={department} />
+				</Switch>
+			</Suspense>
+		</Router>
   );
 }
 
