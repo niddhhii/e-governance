@@ -8,7 +8,7 @@ const Navigation = props => {
 
 	return (
 		<div>
-			<Navbar color="faded" light expand="md" inverse fluid>
+			<Navbar color="faded" light expand="md" >
 				<NavbarBrand href="/">E-Governance</NavbarBrand>
 				<NavbarToggler onClick={toggleNavbar}  />
 				<Collapse isOpen={!collapsed} navbar >

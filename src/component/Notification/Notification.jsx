@@ -1,10 +1,17 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import { Overlay, Button } from 'react-bootstrap';
+import './Notification.css'
 const Notification = props => {
-	const Row = ({ index, style }) => <div style={style}>Row {index}</div>;
+	const [temp, setRow] = useState([]);
 	const [show, setShow] = useState(false);
 	const target = useRef(null);
+	const Row = ({ index }) => <div className="notify"  >{ temp[index]["title"]}</div>;
+	useEffect(() => {
+		fetch('https://jsonplaceholder.typicode.com/posts')
+			.then(res => res.json())
+			.then(data => {console.log(data);setRow(data)});
+	}, []);
 
 	return (
 		<>
@@ -15,21 +22,21 @@ const Notification = props => {
 			>
 				Notification
 			</Button>
-			<Overlay target={target.current} show={show} placement="down">
+			<Overlay target={target.current} show={show} placement="bottom">
 				{({ placement, scheduleUpdate, arrowProps, outOfBoundaries, show: _show, ...props }) => (
 					<div
 						{...props}
 						style={{
-							backgroundColor: 'rgba(0, 0, 0,0.2)',
+							backgroundColor:'white',
 							padding: '2px 10px',
 							color: 'black',
 							border: 1,
 							borderRadius: 3,
 							...props.style,
-                            margin:20,
+							margin: 20,
 						}}
 					>
-						<List height={350} style={{}} itemCount={1000} itemSize={35} width={300}>
+						<List height={350} itemCount={temp.length} itemSize={35} width={300}>
 							{Row}
 						</List>
 					</div>
