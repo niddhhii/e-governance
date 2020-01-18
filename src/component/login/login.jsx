@@ -1,14 +1,16 @@
 import React from 'react';
 import './login.css';
-
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Redirect } from 'react-router-dom';
+import { Button, Form, Alert, FormGroup, Label, Input } from 'reactstrap';
 class login extends React.Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
 			email: '',
 			password: '',
+			token: null,
+			type: null,
+			isvalid: false,
 		};
 		this.onChange = this.onChange.bind(this);
 		this.onsubmit = this.onsubmit.bind(this);
@@ -18,28 +20,42 @@ class login extends React.Component {
 	}
 	onsubmit(e) {
 		e.preventDefault();
-	
+
 		const user = {
 			email: this.state.email,
-			password: this.state.password
+			password: this.state.password,
 		};
-		console.log(user)
-		if (user) 
+		if (user)
 			fetch('http://localhost:5000/user/login', {
 				method: 'POST',
 				body: JSON.stringify(user),
 				headers: {
-				'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
 				},
 			})
 				.then(res => res.json())
-				.then(data => console.log(data));
-		
+				.then(data => {
+					console.log(data);
+					if (data.Token) {
+						this.setState({
+							token: data.Token,
+							type: data.type,
+							isvalid: true,
+						});
+					}
+				});
 	}
 	render() {
+		if (this.state.isvalid && this.state.type === 'Central') {
+			return <Redirect to="/department" />;
+		} else if (this.state.isvalid && this.state.type === 'State') {
+			return <Redirect to="/state_dept" />;
+		} else {
+		//	return <Alert color="info">Incorrect login details</Alert>;
+		
 		return (
 			<div className="layout">
-				<h1>LOGIN</h1>
+				<h1 style={{ textAlign: 'center', color: 'lavender', fontFamily: 'cursive' }}>LOGIN</h1>
 				<hr />
 				<br />
 				<Form>
@@ -69,10 +85,13 @@ class login extends React.Component {
 						/>
 					</FormGroup>
 					<br />
-					<Button color="primary" onClick={this.onsubmit}>LOGIN</Button>
+					<Button color="info" onClick={this.onsubmit}>
+						<h5>LOGIN</h5>
+					</Button>
 				</Form>
 			</div>
 		);
+		}
 	}
 }
 
