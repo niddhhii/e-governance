@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './send_funds.css';
 import Web3 from 'web3';
 import $ from 'jquery';
@@ -7,7 +7,33 @@ const sendFunds = () => {
     let senderId, receiverId, schemeId, senderHash, receiverHash, contract,newLen;
 
     function startApp() {
+        console.log(1);
         let abi = [
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "internalType": "address",
+                        "name": "_receiver",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "_amount",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_scheme",
+                        "type": "string"
+                    }
+                ],
+                "name": "transferFunds",
+                "outputs": [],
+                "payable": false,
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
             {
                 "inputs": [],
                 "payable": false,
@@ -90,34 +116,9 @@ const sendFunds = () => {
                 "payable": false,
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "constant": false,
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "_receiver",
-                        "type": "address"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "_amount",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "string",
-                        "name": "_scheme",
-                        "type": "string"
-                    }
-                ],
-                "name": "transferFunds",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
             }
         ];
-        let fundsAddress = "0x835fbe7a87A4A25DaAC8ce79184B3aA3dceC256e";
+        let fundsAddress = "0x7Ad7F110493CF073cD4611a9A18Bcd2349371dcf";
         let web3 = new Web3('http://localhost:8545');
         contract = new web3.eth.Contract(abi, fundsAddress);
         senderId = $('#senderId').html();
@@ -128,10 +129,7 @@ const sendFunds = () => {
         newLen = 0;
         schemeId = $('#schemeId').html();
     }
-    window.addEventListener('load', function () {
-        startApp();
-    });
-
+    startApp();
     function timeConverter(unixTimestamp) {
         var options = {day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit'};
         var dateObj = new Date(unixTimestamp * 1000);
@@ -144,13 +142,14 @@ const sendFunds = () => {
         })
     }
     window.setInterval(function () {
-        getBalance();
+        // getBalance();
         // getTransactions();
         // track();
     }, 100);
 
     function wait(time) {
-        for (let i = 0; i < time; i++);
+        for (let i = 0; i < time; i++){
+        }
     }
     function getTransactions() {
         var notifs;
@@ -193,7 +192,7 @@ const sendFunds = () => {
     }
 
     function downloadCsv(dataTable) {
-        var tableHeaders = ["Date", "Sender", "Receiver", "Scheme", "Amount"];
+        let tableHeaders = ["Date", "Sender", "Receiver", "Scheme", "Amount"];
         dataTable.unshift(tableHeaders);
         console.log(dataTable);
         let csvContent = "data:text/csv;charset=utf-8,";
@@ -215,21 +214,48 @@ const sendFunds = () => {
         // link.click();
         // link.remove();
     }
+    function sendTransaction() {
+        var receiver, userAccount;
+        var amt = $('#amt').val();
+        var scheme = $('#schemeId').html();
+        function getData() {
+            receiver = '0xC94a06CaC980aedD3246fb4296589BA932EeA5F3';
+            userAccount = '0xCca7560Aa7362F49F3E3bA3CC6f248f6d34900Ee';
+            if (amt > 0 && !isNaN(amt)) {
+                $("#txStatus").text("Sending the money. This may take a while...");
+                return contract.methods.transferFunds(receiver, amt, scheme)
+                    .send({ from: userAccount })
+                    .on("receipt", function (receipt) {
+                        $("#txStatus").text("Successfully sent money to " + receiver + "!");
+                    })
+                    .on("error", function (error) {
+                        $("#txStatus").text(error);
+                    });
+            } else {
+                $('#amt').val('');
+                $("#txStatus").text("Enter a valid number");
+            }
+        }
+        getData();
+    }
+    const handleKeyPress = (event) => {
+        return event.charCode >= 48;
+    };
     return (
-        <div>
-            <h3 id='senderId' style="float: right;">CM</h3>
+        <div onLoad={() => {startApp()}}>
+            <h3 id='senderId'>CM</h3>
             <h4 id='deptId'>MHD</h4><br/>
             <h5 id='schemeId'>Health For All</h5>
             Enter Amount:
-            <input type="number" id="amt" min='1' step="1" onKeyPress="return event.charCode >= 48"/>
-            <button type="submit" onClick="sendTransaction()">Submit</button>
+            <input type="number" id="amt" min='1' step="1" onKeyPress={handleKeyPress}/>
+            <button type="submit" onClick={sendTransaction}>Submit</button>
             <br/><br/>
             <p id="txStatus"></p>
 
             <p id="balance"></p><br/>
-            <button onClick="getTransactions()">Inbox</button>
+            <button onClick={getTransactions}>Inbox</button>
             <p id='notifs'></p>
-            <button onClick="track()">Track</button>
+            <button onClick={track}>Track</button>
             <p id='track'></p>
         </div>
     );
