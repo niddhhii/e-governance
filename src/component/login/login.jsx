@@ -6,26 +6,18 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 const login = () => {
 	return (
 		<div className="layout">
-			<h2>Login</h2>
-			<Form >
+			<h1>LOGIN</h1><hr/><br/>
+			<Form>
 				<FormGroup>
-					<Label>Governance Level</Label>
-					<Input type="select" name="select">
-						<option>Central</option>
-						<option>State</option>
-						<option>3</option>
-					</Input>
+					<Label><h5>Email</h5></Label>
+					<Input type="email" name="email" placeholder="xyz@gmail.com" /><br/>
 				</FormGroup>
 				<FormGroup>
-					<Label> Email</Label>
-					<Input type="email" name="email" placeholder="xyz@gmail.com" />
-				</FormGroup>
-				<FormGroup>
-					<Label>Password</Label>
+					<Label><h5>Password</h5></Label>
 					<Input type="password" name="password" placeholder="**********" />
 				</FormGroup>
-				<Link to="/department">
-					<Button>Login</Button>
+				<Link to="/department"><br/>
+					<Button>LOGIN</Button>
 				</Link>
 			</Form>
 		</div>

@@ -2,8 +2,7 @@ import React from 'react';
 import './department.css';
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Container, Row, Col
-} from 'reactstrap';
+    CardTitle, CardSubtitle, Button, Container, Row, Col} from 'reactstrap';
 
 const department = () => {
     return (

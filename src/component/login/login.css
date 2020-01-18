@@ -1,9 +1,25 @@
 .layout {
-    width:50%;
-    border: 1px solid black;
+    width:30%;
+    border: none;
     padding: 2%;
-    margin-left: 40%;
-    height:60%;
-    margin-top: 10%;
-
+    margin-left: 35%;
+    margin-top: 8%;
+    border: 1px solid black;
+}
+input.form-control{
+    border:none;
+    border-bottom: 2px solid cornflowerblue;
+}
+hr{
+    border: 3px solid cornflowerblue;
+}
+.btn-secondary {
+    background-color: steelblue;
+    border: none;
+    font-weight: bolder;
+    font-size: 24px;
+    width: 355px;
+    height: 40px;
+    line-height: 2px;
+    letter-spacing: 3px;
 }
