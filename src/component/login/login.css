@@ -13,13 +13,3 @@ input.form-control{
 hr{
     border: 3px solid cornflowerblue;
 }
-.btn-secondary {
-    background-color: steelblue;
-    border: none;
-    font-weight: bolder;
-    font-size: 24px;
-    width: 355px;
-    height: 40px;
-    line-height: 2px;
-    letter-spacing: 3px;
-}
