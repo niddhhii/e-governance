@@ -7,33 +7,33 @@ import {
 
 const schemes = () => {
     return (
-        <div>
-            <center><h2>Schemes</h2></center>
+        <div><br/>
+            <center><h2>SCHEMES</h2></center>
             <Container>
                 <Row>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#f19066'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Health Department</h2>
+                                    <h2><center>ABC</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#778beb'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Education Department</h2>
+                                    <h2><center>PQR</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#f5cd79'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Finance Department</h2>
+                                    <h2><center>LMN</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
@@ -41,28 +41,28 @@ const schemes = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#ea8685'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Defence Department</h2>
+                                    <h2><center>XYZ</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#e77f67'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Energy Department</h2>
+                                    <h2><center>IJK</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#786fa6'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Food Department</h2>
+                                    <h2><center>STU</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>

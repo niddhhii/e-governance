@@ -4,6 +4,8 @@ h2{
 }
 .card{
     border-radius: 15px;
+    color: white;
+    box-shadow: 1px 1px 6px 1px black;
 }
 .card-body{
     height: 200px;

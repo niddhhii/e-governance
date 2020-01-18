@@ -6,33 +6,33 @@ import {
 
 const department = () => {
     return (
-        <div>
-            <center><h2>Departments</h2></center>
+        <div><br/>
+            <center><h2>DEPARTMENTS</h2></center>
             <Container>
                 <Row>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#f19066'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Health Department</h2>
+                                    <h2><center>National Health Department</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#778beb'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Education Department</h2>
+                                    <h2><center>National Education Department</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#f5cd79'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Finance Department</h2>
+                                    <h2><center>National Finance Department</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
@@ -40,28 +40,28 @@ const department = () => {
                 </Row>
                 <Row>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#ea8685'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Defence Department</h2>
+                                    <h2><center>National Defence Department</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#e77f67'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Energy Department</h2>
+                                    <h2><center>National Energy Department</center></h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
                     </Col>
                     <Col>
-                        <Card>
+                        <Card style={{backgroundColor: '#786fa6'}}>
                             <CardBody>
                                 <CardTitle>
-                                    <h2>National Food Department</h2>
+                                    <h2><center>National Food Department</center>   </h2>
                                 </CardTitle>
                             </CardBody>
                         </Card>
