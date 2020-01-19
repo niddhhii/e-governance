@@ -255,11 +255,11 @@ const sendFunds = () => {
     }
     return (
         <center><div className={"sendForm"} onLoad={() => {startApp()}}>
-            <h3 id='senderId'>CM</h3>
-            <h4 id='deptId'>MHD</h4><br/>
-            <h5 id='schemeId'>Health For All</h5>
-            <input type="number" placeholder={"Enter Amount:"} id="amt" min='1' step="1" />
-            <button type="submit" onClick={sendTransaction}>Submit</button>
+            <h2 id='senderId'>Central Government</h2><br/>
+            <h4 id='deptId'>Maha Health Department</h4><br/>
+            <h5 id='schemeId'>Scheme : Health For All</h5><br/>
+            <input type="number" placeholder={"Enter Amount:"} id="amt" min='1' step="1" /><br/><br/><br/>
+            <button type="submit" onClick={sendTransaction}>SEND</button>
             <br/><br/>
             <p id="txStatus"></p>
 
