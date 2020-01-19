@@ -17,7 +17,8 @@ class schemeview extends Component {
             method:'GET'
         })
 			.then(res => res.json())
-			.then(data => { this.setState({list:[...this.state.list,...data.message]}); 
+			.then(data => { console.log(data);
+            this.setState({list:[...this.state.list,...data.message]}); 
                 console.log(this.state.list.map(val=>val))});
 	}
 

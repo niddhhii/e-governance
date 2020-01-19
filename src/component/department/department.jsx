@@ -5,12 +5,12 @@ import { withRouter } from 'react-router-dom';
 const department = props => {
 	return (
 		<div
-			onClick={() => (
+			onClick={() =>
 				props.history.push({
-  pathname: '/schemes',
-  state: { DeptID:props.DeptID  }
-}))}
-			
+					pathname: '/schemes',
+					state: { DeptID: props.deptid },
+				})
+			}
 		>
 			<Container>
 				<Row>

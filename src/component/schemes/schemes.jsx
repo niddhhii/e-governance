@@ -5,7 +5,6 @@ import { Card, CardBody, CardTitle, Container, Row, Col } from 'reactstrap';
 const schemes = props => {
 	return (
 		<div>
-			
 			<Container>
 				<Row>
 					<Col>

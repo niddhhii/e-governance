@@ -12,7 +12,6 @@ function App() {
 				<Switch>
 					<Route path="/" exact component={home} />
 					<Route path="/department" exact component={departmentview} />
-					
 					<Route path="/schemes" exact component={schemeview} />
 					<Route path="/state_dept" exact component={state_dept} />
 					<Route path="/sendFunds" exact component={sendFunds} />
