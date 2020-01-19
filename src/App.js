@@ -5,6 +5,7 @@ const departmentview = lazy(() => import('./component/department/departmentview'
 const schemeview = lazy(() => import('./component/schemes/schemeview'));
 const state_dept = lazy(() => import('./component/state_dept/state_dept'));
 const sendFunds = lazy(() => import('./component/sendFunds/sendFunds'));
+
 function App() {
 	return (
 		<Router>
