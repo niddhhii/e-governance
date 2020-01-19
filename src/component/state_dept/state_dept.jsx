@@ -1,8 +1,8 @@
 import React from 'react';
 import './state_dept.css';
 import {
-    Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Container, Row, Col
+    Card, CardBody,
+    CardTitle, Container, Row, Col
 } from 'reactstrap';
 
 const state_dept = () => {

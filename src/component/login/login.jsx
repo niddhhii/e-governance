@@ -3,7 +3,6 @@ import './login.css';
 import { Redirect } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const Context = React.createContext();
 
 class login extends React.Component {
 	constructor(props) {
@@ -15,9 +14,11 @@ class login extends React.Component {
 			type: null,
 			isvalid: false,
 		};
+	
 		this.onChange = this.onChange.bind(this);
 		this.onsubmit = this.onsubmit.bind(this);
 	}
+	
 	onChange(e) {
 		this.setState({ [e.target.name]: e.target.value });
 	}
@@ -45,6 +46,7 @@ class login extends React.Component {
 							type: data.type,
 							isvalid: true,
 						});
+						this.cookies.set('email', user.email);
 					}
 				});
 	}
