@@ -1,8 +1,9 @@
 import React from 'react';
 import './login.css';
-import { Redirect } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
-
+import  { UserProvider } from '../../UserContext';
+import Department from '../department/departmentview';
+import { Redirect } from 'react-router-dom';
 
 class login extends React.Component {
 	constructor(props) {
@@ -18,7 +19,7 @@ class login extends React.Component {
 		this.onChange = this.onChange.bind(this);
 		this.onsubmit = this.onsubmit.bind(this);
 	}
-	
+
 	onChange(e) {
 		this.setState({ [e.target.name]: e.target.value });
 	}
@@ -46,16 +47,19 @@ class login extends React.Component {
 							type: data.type,
 							isvalid: true,
 						});
-						this.cookies.set('email', user.email);
+
 					}
 				});
-	}
+
+		};
+
+
 	
 	render() {
 		if (this.state.isvalid && this.state.type === 'Central') {
-			return <Redirect to="/department" />;
+			return (<Department />);
 		} else if (this.state.isvalid && this.state.type === 'State') {
-			return <Redirect to="/state_dept" />;
+			return (<Redirect to="/state_dept" />);
 		} else {
 		//	return <Alert color="info">Incorrect login details</Alert>;
 		
@@ -96,6 +100,7 @@ class login extends React.Component {
 					</Button>
 				</Form>
 			</div>
+
 		);
 		}
 	}

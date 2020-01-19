@@ -1,10 +1,13 @@
 import React from 'react';
 import './schemes.css';
 import { Card, CardBody, CardTitle, Container, Row, Col } from 'reactstrap';
-
+import sendfund from '../sendFunds/sendFunds'
+import { withRouter } from 'react-router-dom';
 const schemes = props => {
 	return (
-		<div>
+		<div 	onClick={() =>
+			props.history.push('/sendfunds')
+		}>
 			<Container>
 				<Row>
 					<Col>
@@ -80,4 +83,4 @@ const schemes = props => {
 		</div>
 	);
 };
-export default schemes;
+export default withRouter(schemes);

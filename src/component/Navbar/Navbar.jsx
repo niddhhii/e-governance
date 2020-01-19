@@ -23,7 +23,7 @@ const Navigation = props => {
 							<Notification />
 						</NavItem>
 						<NavItem>
-							<NavLink style={{ color: 'white' }} href="">
+							<NavLink style={{ color: 'white' }} href="/">
 								Logout
 							</NavLink>
 						</NavItem>

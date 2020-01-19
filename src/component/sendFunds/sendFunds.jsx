@@ -3,11 +3,14 @@ import './send_funds.css';
 import Web3 from 'web3';
 import $ from 'jquery';
 import Swal from 'sweetalert2';
+import { UserConsumer } from '../../UserContext';
+import Navbar from '../Navbar/Navbar';
 
 const sendFunds = () => {
-    let senderId, receiverId, schemeId, receiverHash, contract,newLen;
+    let senderId, receiverId, schemeId, receiver1,receiver2,receiver3, contract,newLen;
 
     function startApp() {
+
         let abi = [
             {
                 "constant": false,
@@ -121,11 +124,12 @@ const sendFunds = () => {
         let fundsAddress = "0x7Ad7F110493CF073cD4611a9A18Bcd2349371dcf";
         let web3 = new Web3('http://localhost:8545');
         contract = new web3.eth.Contract(abi, fundsAddress);
-        senderId = $('#senderId').html();
-        receiverId = $('#deptId').html();
-        receiverHash = '0x4A746fe073C1B1e024B96e1D4bB435f51aC7541a';
+        senderId = "0xCca7560Aa7362F49F3E3bA3CC6f248f6d34900Ee";
+        receiver1 = "0xC94a06CaC980aedD3246fb4296589BA932EeA5F3";
+        receiver2 = '0x4A746fe073C1B1e024B96e1D4bB435f51aC7541a';
+        receiver3 = '0x96aFC09b5b54c083E3B0Bf2bDe4A62cfD6c10508';
         newLen = 0;
-        schemeId = $('#schemeId').html();
+        schemeId = "Universal Health Insurance Scheme";
     }
     startApp();
     function timeConverter(unixTimestamp) {
@@ -153,16 +157,18 @@ const sendFunds = () => {
         var notifs;
         contract.methods.getLength().call().then(function (length) {
             if (newLen != length) {
+                notifs+='<table border="1">'
                 for (let transid = newLen; transid < length; transid++) {
                     contract.methods.transactions(transid).call((err, trans) => {
-                        if (trans && trans.receiver == receiverHash) {
+                        if (trans && trans.receiver == receiver1) {
                             notifs = $('#notifs').html();
-                            notifs += trans.sender + '&nbsp;&nbsp;' + trans.receiver + '&nbsp;&nbsp;' + timeConverter(trans.timestamp) + '&nbsp;&nbsp;' + trans.amount + '&nbsp;&nbsp;' + trans.scheme + '<br>';
+                            notifs += '<tr><td>'+trans.sender+'</td><td>'+ '</td>&nbsp;<td>' + trans.receiver + '</td><td>' + timeConverter(trans.timestamp) + '</td><td>' + trans.amount + '</td><td>' + trans.scheme + '</td></tr>';
                             $('#notifs').html(notifs);
                         }
                     });
                     wait(10000000);
                 }
+                notifs+='</table>';
                 newLen = length;
             }
         })
@@ -207,7 +213,7 @@ const sendFunds = () => {
                         Swal.fire({
                                 icon:'success',
                                 title:'Yayyy!!!',
-                                text:'Successfully sent money to '+receiverId+"!"
+                                text:'Successfully sent money to National Health Department!'
                             }
                         );
                     })
@@ -230,17 +236,26 @@ const sendFunds = () => {
         getData();
     }
     return (
-        <center><div className={"sendForm"} onLoad={() => {startApp()}}>
-            <h2 id='senderId'>Central Government</h2><br/>
-            <h4 id='deptId'>Maha Health Department</h4><br/>
-            <h5 id='schemeId'>Scheme : Health For All</h5><br/>
-            <input type="number" placeholder={"Enter Amount:"} id="amt" min='1' step="1" />
-            <input type="email" placeholder={"Enter Destination email:"} id="destMail"/>
-            <button type="submit" onClick={sendTransaction}>SEND</button>
-            <br/><br/>
-            <p id="balance"></p><br/>
-        </div></center>
+
+        <div className={"sendForm"} onLoad={() => {startApp()}}>
+            <Navbar />
+            <center>
+                <h2 id='senderId'>Sender: Central Government</h2><br/>
+                <h4 id='deptId'>Receiver: National Health Department</h4><br/>
+                <h5 id='schemeId'>Universal Health Insurance Scheme</h5><br/>
+                <input type="number" placeholder={"Enter Amount:"} id="amt" min='1' step="1" />
+                <input type="email" placeholder={"Enter Destination email:"} id="destMail"/>
+                <button type="submit" className="button1" onClick={sendTransaction}>SEND</button>
+                <br/><br/>
+                <div className="balanc">Your Balance Is <p id="balance"></p></div>
+                <br/>
+                Notifications:
+                <p id={'notifs'}></p>
+                <br/>
+            </center>
+        </div>
     );
+
 };
 
 export default sendFunds;

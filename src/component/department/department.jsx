@@ -8,7 +8,8 @@ const department = props => {
 			onClick={() =>
 				props.history.push({
 					pathname: '/schemes',
-					state: { DeptID: props.deptid },
+					state: { DeptID: props.deptid,
+					},
 				})
 			}
 		>

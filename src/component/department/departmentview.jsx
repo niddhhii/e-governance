@@ -7,7 +7,8 @@ class departmentview extends Component {
         super(props)
     
         this.state = {
-             list:[]
+             list:[],
+
         }
     }
     
@@ -29,7 +30,7 @@ class departmentview extends Component {
 				<h2>DEPARTMENTS</h2>
 			</center> 
             {this.state.list.map((val,index) =>(
-                <Department key={val.DeptID} name={val.name} deptid={val.DeptID} />
+                <Department key={val.DeptID} name={val.name}  deptid={val.DeptID} />
             ))}
             </div>
         );
