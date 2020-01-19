@@ -3,7 +3,16 @@
     display: block;
 }
 input{
-    width:700px;
+    width:500px;
     height: 40px;
     padding: 5px;
+    margin: 10px;
+}
+button{
+    width:70px;
+    height:40px;
+    border: none;
+    background: cornflowerblue;
+    color:white;
+    border-radius:5px;
 }

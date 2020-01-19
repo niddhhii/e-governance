@@ -141,8 +141,8 @@ const sendFunds = () => {
     }
     window.setInterval(function () {
         getBalance();
-        // getTransactions();
-        // track();
+        getTransactions();
+        track();
     }, 100);
 
     function wait(time) {
@@ -185,30 +185,6 @@ const sendFunds = () => {
                 newLen = length;
             }
         })
-    }
-
-    function downloadCsv(dataTable) {
-        let tableHeaders = ["Date", "Sender", "Receiver", "Scheme", "Amount"];
-        dataTable.unshift(tableHeaders);
-        console.log(dataTable);
-        let csvContent = "data:text/csv;charset=utf-8,";
-        var i = 0;
-        dataTable.forEach(function (rowArray) {
-            let row = rowArray.join(",");
-            console.log(i);
-            i++;
-            csvContent += row + "\r\n";
-        });
-        var encodedUri = encodeURI(csvContent);
-        var link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.style.display = 'none';
-        link.setAttribute("download", "myCSV.csv");
-        link.innerHTML = "Click Here to download";
-        document.body.appendChild(link);
-
-        // link.click();
-        // link.remove();
     }
     function sendTransaction() {
         var receiver, userAccount;
@@ -258,11 +234,10 @@ const sendFunds = () => {
             <h2 id='senderId'>Central Government</h2><br/>
             <h4 id='deptId'>Maha Health Department</h4><br/>
             <h5 id='schemeId'>Scheme : Health For All</h5><br/>
-            <input type="number" placeholder={"Enter Amount:"} id="amt" min='1' step="1" /><br/><br/><br/>
+            <input type="number" placeholder={"Enter Amount:"} id="amt" min='1' step="1" />
+            <input type="email" placeholder={"Enter Destination email:"} id="destMail"/>
             <button type="submit" onClick={sendTransaction}>SEND</button>
             <br/><br/>
-            <p id="txStatus"></p>
-
             <p id="balance"></p><br/>
             <button onClick={getTransactions}>Inbox</button>
             <p id='notifs'></p>

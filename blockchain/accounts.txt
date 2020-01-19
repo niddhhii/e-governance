@@ -1,0 +1,16 @@
+0xCca7560Aa7362F49F3E3bA3CC6f248f6d34900Ee
+0xC94a06CaC980aedD3246fb4296589BA932EeA5F3
+
+
+bootnode -nodekey boot.key -verbosity 9 -addr :30310
+
+geth --datadir node1/ --syncmode 'full' --allow-insecure-unlock --port 30311 --rpc --rpcaddr 'localhost' --rpccorsdomain "*" --rpcport 8545 --rpcapi 'personal,db,eth,net,web3,txpool,miner,admin' --bootnodes 'enode://cd2be1ac2259ec6e0da4a632e2a422c93f64673374613d23ab99a11d9b99e6a3aab4484756be6e2e04c2dc4065f4093e968e35b143b09943e3ea2ba6c273690d@127.0.0.1:0?discport=30310' --networkid 2050 --gasprice '1' -unlock '0xCca7560Aa7362F49F3E3bA3CC6f248f6d34900Ee' --password node1/pwd.txt --mine --ipcdisable
+
+geth --datadir node2/ --syncmode 'full' --allow-insecure-unlock --port 30312 --rpc --rpcaddr 'localhost' --rpccorsdomain "*" --rpcport 8546 --rpcapi 'personal,db,eth,net,web3,txpool,miner,admin' --bootnodes 'enode://cd2be1ac2259ec6e0da4a632e2a422c93f64673374613d23ab99a11d9b99e6a3aab4484756be6e2e04c2dc4065f4093e968e35b143b09943e3ea2ba6c273690d@127.0.0.1:0?discport=30310' --networkid 2050 --gasprice '1' -unlock '0xC94a06CaC980aedD3246fb4296589BA932EeA5F3' --password node2/pwd.txt --mine --ipcdisable
+
+deptAddress["CM"]=0xCca7560Aa7362F49F3E3bA3CC6f248f6d34900Ee;
+        deptAddress["NHD"]=0xC94a06CaC980aedD3246fb4296589BA932EeA5F3;
+        deptAddress["MHD"]=0x4A746fe073C1B1e024B96e1D4bB435f51aC7541a;
+        deptAddress["CZ"]=0x96aFC09b5b54c083E3B0Bf2bDe4A62cfD6c10508;
+
+
