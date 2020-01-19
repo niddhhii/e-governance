@@ -1,13 +1,13 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import './send_funds.css';
 import Web3 from 'web3';
 import $ from 'jquery';
+import Swal from 'sweetalert2';
 
 const sendFunds = () => {
-    let senderId, receiverId, schemeId, senderHash, receiverHash, contract,newLen;
+    let senderId, receiverId, schemeId, receiverHash, contract,newLen;
 
     function startApp() {
-        console.log(1);
         let abi = [
             {
                 "constant": false,
@@ -123,8 +123,6 @@ const sendFunds = () => {
         contract = new web3.eth.Contract(abi, fundsAddress);
         senderId = $('#senderId').html();
         receiverId = $('#deptId').html();
-        // senderHash = getDeptAddr(senderId);
-        // receiverHash = getDeptAddr(receiverId);
         receiverHash = '0x4A746fe073C1B1e024B96e1D4bB435f51aC7541a';
         newLen = 0;
         schemeId = $('#schemeId').html();
@@ -142,7 +140,7 @@ const sendFunds = () => {
         })
     }
     window.setInterval(function () {
-        // getBalance();
+        getBalance();
         // getTransactions();
         // track();
     }, 100);
@@ -153,7 +151,6 @@ const sendFunds = () => {
     }
     function getTransactions() {
         var notifs;
-        var transactions = new Array();
         contract.methods.getLength().call().then(function (length) {
             if (newLen != length) {
                 for (let transid = newLen; transid < length; transid++) {
@@ -172,16 +169,15 @@ const sendFunds = () => {
     }
 
     function track() {
-        var notifs;
-        var transactions = new Array();
+        var track;
         contract.methods.getLength().call().then(function (length) {
             if (newLen != length) {
                 for (let transid = newLen; transid < length; transid++) {
                     contract.methods.transactions(transid).call((err, trans) => {
                         if (trans && trans.scheme == schemeId) {
-                            notifs = $('#notifs').html();
-                            notifs += trans.sender + '&nbsp;&nbsp;' + trans.receiver + '&nbsp;&nbsp;' + timeConverter(trans.timestamp) + '&nbsp;&nbsp;' + trans.amount + '&nbsp;&nbsp;' + trans.scheme + '<br>';
-                            $('#notifs').html(notifs);
+                            track = $('#notifs').html();
+                            track += trans.sender + '&nbsp;&nbsp;' + trans.receiver + '&nbsp;&nbsp;' + timeConverter(trans.timestamp) + '&nbsp;&nbsp;' + trans.amount + '&nbsp;&nbsp;' + trans.scheme + '<br>';
+                            $('#track').html(track);
                         }
                     });
                     wait(10000000);
@@ -222,32 +218,47 @@ const sendFunds = () => {
             receiver = '0xC94a06CaC980aedD3246fb4296589BA932EeA5F3';
             userAccount = '0xCca7560Aa7362F49F3E3bA3CC6f248f6d34900Ee';
             if (amt > 0 && !isNaN(amt)) {
-                $("#txStatus").text("Sending the money. This may take a while...");
+                Swal.fire({
+                    title: 'Sending the money...',
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                    }
+                });
                 return contract.methods.transferFunds(receiver, amt, scheme)
                     .send({ from: userAccount })
                     .on("receipt", function (receipt) {
-                        $("#txStatus").text("Successfully sent money to " + receiver + "!");
+                        Swal.fire({
+                                icon:'success',
+                                title:'Yayyy!!!',
+                                text:'Successfully sent money to '+receiverId+"!"
+                            }
+                        );
                     })
                     .on("error", function (error) {
-                        $("#txStatus").text(error);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: error,
+                        });
                     });
             } else {
                 $('#amt').val('');
-                $("#txStatus").text("Enter a valid number");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Enter a valid number!'
+                });
             }
         }
         getData();
     }
-    const handleKeyPress = (event) => {
-        return event.charCode >= 48;
-    };
     return (
-        <div onLoad={() => {startApp()}}>
+        <center><div className={"sendForm"} onLoad={() => {startApp()}}>
             <h3 id='senderId'>CM</h3>
             <h4 id='deptId'>MHD</h4><br/>
             <h5 id='schemeId'>Health For All</h5>
-            Enter Amount:
-            <input type="number" id="amt" min='1' step="1" onKeyPress={handleKeyPress}/>
+            <input type="number" placeholder={"Enter Amount:"} id="amt" min='1' step="1" />
             <button type="submit" onClick={sendTransaction}>Submit</button>
             <br/><br/>
             <p id="txStatus"></p>
@@ -257,7 +268,7 @@ const sendFunds = () => {
             <p id='notifs'></p>
             <button onClick={track}>Track</button>
             <p id='track'></p>
-        </div>
+        </div></center>
     );
 };
 
