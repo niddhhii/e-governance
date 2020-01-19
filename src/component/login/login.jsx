@@ -1,7 +1,10 @@
 import React from 'react';
 import './login.css';
 import { Redirect } from 'react-router-dom';
-import { Button, Form, Alert, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+
+const Context = React.createContext();
+
 class login extends React.Component {
 	constructor(props) {
 		super(props);
@@ -45,6 +48,7 @@ class login extends React.Component {
 					}
 				});
 	}
+	
 	render() {
 		if (this.state.isvalid && this.state.type === 'Central') {
 			return <Redirect to="/department" />;
