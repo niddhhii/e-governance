@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Department from './department';
-
+import Navbar from '../Navbar/Navbar';
 class departmentview extends Component {
     
     constructor(props) {
@@ -24,7 +24,7 @@ class departmentview extends Component {
 	render() {
         return(
             <div>
-            <br />
+            <Navbar/>
 			<center>
 				<h2>DEPARTMENTS</h2>
 			</center> 

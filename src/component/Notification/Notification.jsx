@@ -17,9 +17,8 @@ const Notification = props => {
 		<>
 			<Button
 				ref={target}
-				style={{ backgroundColor: 'white', color: 'black', border: 'none', paddingBottom: '0px' }}
-				onClick={() => setShow(!show)}
-			>
+				style={{ backgroundColor: 'black', color: 'white', border: 'none', paddingBottom: '0px',marginTop:'3px',fontSize:'20px',marginRight:'30px'}}
+				onClick={() => setShow(!show)}>
 				Notification
 			</Button>
 			<Overlay target={target.current} show={show} placement="bottom">

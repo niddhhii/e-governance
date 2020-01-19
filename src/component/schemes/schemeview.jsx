@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Scheme from './schemes';
-
+import Navbar from '../Navbar/Navbar';
 class schemeview extends Component {
     
     constructor(props) {
@@ -25,10 +25,8 @@ class schemeview extends Component {
 	render() {
         return(
             <div>
-            <br />
-			<center>
+            <Navbar/>
 				<h2>SCHEMES</h2>
-			</center> 
             {this.state.list.map((val,index) =>(
                 <Scheme key={val.schemeID} name={val.name} />
             ))}

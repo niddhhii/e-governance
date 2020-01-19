@@ -92,7 +92,7 @@ class login extends React.Component {
 					</FormGroup>
 					<br />
 					<Button color="info" onClick={this.onsubmit}>
-						<h5>LOGIN</h5>
+						<h5 style={{color:'#546de5'}}>LOGIN</h5>
 					</Button>
 				</Form>
 			</div>

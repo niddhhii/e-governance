@@ -239,10 +239,6 @@ const sendFunds = () => {
             <button type="submit" onClick={sendTransaction}>SEND</button>
             <br/><br/>
             <p id="balance"></p><br/>
-            <button onClick={getTransactions}>Inbox</button>
-            <p id='notifs'></p>
-            <button onClick={track}>Track</button>
-            <p id='track'></p>
         </div></center>
     );
 };

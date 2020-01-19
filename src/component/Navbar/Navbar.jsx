@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import Notification from '../Notification/Notification';
+import './Navbar.css';
 const Navigation = props => {
 	const [collapsed, setCollapsed] = useState(true);
 
@@ -9,22 +10,21 @@ const Navigation = props => {
 	return (
 		<div>
 			<Navbar color="faded" light expand="md" >
-				<NavbarBrand href="/">E-Governance</NavbarBrand>
-				<NavbarToggler onClick={toggleNavbar}  />
+				<NavbarBrand href="/" style={{color:'white'}}>FundEasy</NavbarBrand>
+				<NavbarToggler onClick={toggleNavbar}/>
 				<Collapse isOpen={!collapsed} navbar >
 					<Nav>
 						<NavItem>
-							<NavLink style={{ color: 'black' }} href="/components/">
+							<NavLink style={{ color: 'white' }} href="/components/">
 								Home
 							</NavLink>
 						</NavItem>
-
 						<NavItem>
 							<Notification />
 						</NavItem>
 						<NavItem>
-							<NavLink style={{ color: 'black' }} href="">
-								logout
+							<NavLink style={{ color: 'white' }} href="">
+								Logout
 							</NavLink>
 						</NavItem>
 					</Nav>

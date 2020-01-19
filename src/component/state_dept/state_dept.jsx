@@ -1,5 +1,6 @@
 import React from 'react';
 import './state_dept.css';
+import Navbar from '../Navbar/Navbar';
 import {
     Card, CardBody,
     CardTitle, Container, Row, Col
@@ -7,7 +8,8 @@ import {
 
 const state_dept = () => {
     return (
-        <div><br/>
+        <div>
+            <Navbar/>
             <center><h2>STATE DEPARTMENTS</h2></center>
             <Container>
                 <Row>

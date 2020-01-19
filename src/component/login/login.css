@@ -18,6 +18,7 @@ h5{
     color: lavender;
 
 }
-button {
+.btn-info{
+    background-color: white;
     color:lavender;
 }
